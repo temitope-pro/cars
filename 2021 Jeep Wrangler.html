@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2019 Chevrolet Camaro</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <style>
+        /* Custom offcanvas dark background */
+        .offcanvas {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa;
+        }
+
+        /* Body Styles */
+        body {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Car Description Section */
+        .car-description {
+            text-align: center;
+            padding: 50px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .car-description h1 {
+            font-size: 2.5rem;
+            color: #f8f9fa;
+            text-transform: uppercase;
+            font-weight: bold;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        .car-description p {
+            font-size: 1.2rem;
+            color: #ddd;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Key Features Section */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        .feature-item {
+            background: #343a40;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #f8f9fa;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Image Section Styles */
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 50px 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Additional Content Section */
+        .additional-content {
+            padding: 50px 20px;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .additional-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .additional-content p {
+            font-size: 1.1rem;
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        body {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-size: 1.25rem;
+        }
+
+        .car-location {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .footer {
+            background-color: #343a40;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            color: #f8f9fa;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+
+        /* Hover effect for car cards */
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Added transition for smooth scaling */
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+            /* Increase the size of the card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Enhance the shadow for emphasis */
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-size: 1.25rem;
+        }
+
+        .car-location {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* Custom offcanvas dark background */
+        .offcanvas {
+            background-color: #343a40;
+            /* Dark background for offcanvas */
+            color: #f8f9fa;
+            /* Light text for contrast */
+        }
+
+        .offcanvas .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas .offcanvas-body {
+            padding-top: 20px;
+        }
+
+        .offcanvas .nav-link {
+            color: #f8f9fa;
+        }
+
+        .offcanvas .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* Make sure the body background is responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                background: url('https://via.placeholder.com/1600x900') no-repeat center center;
+                background-size: cover;
+            }
+        }
+
+        /* Fix navbar at the top */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            /* Ensures the navbar stays on top of other elements */
+        }
+
+        /* Add padding to the top of the content to prevent it from being hidden behind the fixed navbar */
+        body {
+            padding-top: 70px;
+            /* Adjust this value to the height of your navbar */
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        /* Fix offcanvas at the top */
+        .offcanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #343a40;
+            /* Dark background for offcanvas */
+            color: #f8f9fa;
+            /* Light text for contrast */
+        }
+
+        .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas-body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Car Dealer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters"
+                aria-controls="offcanvasFilters" style="color: wheat !important; background-color: white;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="car2.html">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
+                style="color: white !important; background-color: white;"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="car2.html" class="nav-link">Cars</a></li>
+                <li><a href="aboutus.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Car Description Section -->
+    <div class="car-description container">
+        <h1>2019 jeep-wrangler</h1>
+        <p>The jeep-wrangler is a high-performance vehicle that blends modern engineering with legendary muscle.
+            With aggressive styling, cutting-edge technology, and heart-pounding performance, it's built for those who
+            demand more from their car.</p>
+
+        <div class="feature-list">
+            <div class="feature-item">
+                <h5>Performance</h5>
+                <p>With up to 455-hp V8 power, the jeep-wrangler accelerates from 0 to 60 mph in just 4 seconds.</p>
+            </div>
+            <div class="feature-item">
+                <h5>Design</h5>
+                <p>Sleek, aerodynamic body with aggressive lines, the jeep-wrangler's design speaks power.</p>
+            </div>
+            <div class="feature-item">
+                <h5>Technology</h5>
+                <p>Stay connected with Apple CarPlay, Android Auto, and a premium sound system.</p>
+            </div>
+            <div class="feature-item">
+                <h5>Safety</h5>
+                <p>Advanced safety features like forward-collision warning and lane-keeping assist.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Content Section -->
+    <div class="additional-content container">
+        <h2>Why Choose the jeep-wrangler</h2>
+        <p>The jeep-wrangler is more than just a car; it's a driving experience. Its powerful engine lineup, including the
+            turbocharged 4-cylinder and muscular V8 options, offers something for everyone. Whether you're seeking
+            heart-racing acceleration or an everyday driver with a touch of muscle, the jeep-wrangler delivers with precision.
+            Plus, the sleek, aerodynamic design and cutting-edge technology make the ride feel as good as it looks.</p>
+        <p>Its advanced safety features provide peace of mind, and the interior offers both comfort and luxury. With
+            premium materials, intuitive controls, and high-tech features, the jeep-wrangler is as enjoyable to drive as it is
+            to look at. Don’t just drive, dominate the road.</p>
+    </div>
+
+    <script src="temi.js"></script>
+</body>
+
+</html>

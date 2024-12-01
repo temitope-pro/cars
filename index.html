@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealer - Buy and Sell Cars</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            /* Dark background color */
+            color: #f8f9fa;
+            /* Light text for contrast */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            /* Dark background for navbar */
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa;
+            /* Light color for navbar links */
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #007bff;
+            /* Hover color for navbar links */
+        }
+
+        .hero-section {
+            height: 100vh;
+            /* Full viewport height for hero section */
+            background-size: cover;
+            background-image: url(25.jpg);
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            /* Ensure the title stands out */
+            text-shadow: 2px 2px 5px #000;
+            /* Darker shadow for better contrast */
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background-color: #343a40;
+            /* Dark footer background */
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            color: #f8f9fa;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+
+        .ball {
+            text-decoration: none;
+            color: gray !important;
+        }
+
+        .ball:hover {
+            color: blue !important;
+        }
+
+        /* Custom offcanvas dark background */
+        .offcanvas {
+            background-color: #343a40;
+            /* Dark background for offcanvas */
+            color: #f8f9fa;
+            /* Light text for contrast */
+        }
+
+        .offcanvas .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas .offcanvas-body {
+            padding-top: 20px;
+        }
+
+        .offcanvas .nav-link {
+            color: #f8f9fa;
+        }
+
+        .offcanvas .nav-link:hover {
+            color: #007bff;
+        }
+
+       
+
+        /* Section styling */
+        .intro-section {
+            padding: 50px 0;
+            background-color: #383d41;
+            text-align: center;
+        }
+
+        .recommendation-section {
+            background-color: #454d55;
+            padding: 50px 0;
+        }
+
+        .testimonial-section {
+            background-color: #343a40;
+            padding: 50px 0;
+        }
+
+        .testimonial-card {
+            background-color: #2c2f36;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Added transition for smooth scaling */
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+            /* Increase the size of the card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Enhance the shadow for emphasis */
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+        /* Fix navbar at the top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050; /* Ensures the navbar stays on top of other elements */
+}
+
+/* Add padding to the top of the content to prevent it from being hidden behind the fixed navbar */
+body {
+    padding-top: 70px; /* Adjust this value to the height of your navbar */
+    background-color: #2c2c2c;
+    color: #f8f9fa;
+}
+
+/* Fix offcanvas at the top */
+.offcanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #343a40; /* Dark background for offcanvas */
+    color: #f8f9fa; /* Light text for contrast */
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.offcanvas-body {
+    padding-top: 20px;
+}
+.pole{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Car Dealer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters"
+                aria-controls="offcanvasFilters" style="color: wheat !important; background-color: white;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="car2.html">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
+                style="color: white !important; background-color: white;"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="car2.html" class="nav-link">Cars</a></li>
+                <li><a href="aboutus.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">Find Your Perfect Car</h1>
+        <p class="hero-subtitle">Browse a wide range of cars at unbeatable prices.</p>
+        <a href="car2.html" class="btn btn-primary pole">Explore Cars</a>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="intro-section">
+        <h2>Why Buy From Us?</h2>
+        <p>We offer a wide variety of cars, including both new and used options. Our cars are top quality, carefully
+            inspected, and ready to drive. We provide an excellent warranty and customer service to ensure your
+            satisfaction.</p>
+        <a href="car2.html" class="btn btn-primary">Browse Our Cars</a>
+    </div>
+
+    <!-- Recommendation Section -->
+    <div class="recommendation-section text-center">
+        <h2>Our Recommended Cars</h2>
+        <p>Check out these popular models that our customers love. Get yours today!</p>
+        <div class="row">
+            <!-- Add car recommendation cards here -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="2.jpg" alt="Toyota Corolla">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2020 Toyota Corolla</h5>
+                        <p class="car-location">Location: New York</p>
+                        <p class="car-price">$20,000</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 2: 2019 Ford Mustang -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="3.jpg" alt="Ford Mustang">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2019 Ford Mustang</h5>
+                        <p class="car-location">Location: Los Angeles</p>
+                        <p class="car-price">$30,000</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 3: 2021 Tesla Model S -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="1.jpg" alt="Tesla Model S">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Tesla Model S</h5>
+                        <p class="car-location">Location: San Francisco</p>
+                        <p class="car-price">$85,000</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 4: 2020 Honda Civic -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="4.jpg" alt="Honda Civic">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2020 Honda Civic</h5>
+                        <p class="car-location">Location: Miami</p>
+                        <p class="car-price">$22,500</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="25.jpg" alt="Ferrari 488 GTB">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Ferrari 488 GTB</h5>
+                        <p class="car-location">Location: Miami</p>
+                        <p class="car-price">$280,000</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="23.jpg" alt="Rolls-Royce Cullinan">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Rolls-Royce Cullinan</h5>
+                        <p class="car-location">Location: New York</p>
+                        <p class="car-price">$350,000</p>
+                        <a href="car2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <div class="testimonial-section">
+        <h2 class="text-center">What Our Customers Are Saying</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p>"I found my dream car with ease. The process was simple, and the service was exceptional!"</p>
+                    <footer>- John Doe</footer>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p>"The staff was friendly, and I drove off in a new car within a few hours. Highly recommend!"</p>
+                    <footer>- Jane Smith</footer>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p>"Great selection of cars and great prices. I couldn't be happier with my purchase!"</p>
+                    <footer>- Mike Lee</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Emmiter_emit, All Rights Reserved</p>
+        <p>Follow Us:
+            <a href="www.facebook.com" class="ball">Facebook</a> |
+            <a href="www.instagram.com" class="ball">Instagram</a> |
+            <a href="www.twitter.com" class="ball">Twitter</a>
+        </p>
+    </div>
+
+    <script src="temi.js"></script>
+    <!-- Bootstrap JavaScript and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

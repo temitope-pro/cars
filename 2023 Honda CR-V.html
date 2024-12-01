@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2019 Honda CR-V</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <style>
+        /* Custom offcanvas dark background */
+        .offcanvas {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa;
+        }
+
+        /* Body Styles */
+        body {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Car Description Section */
+        .car-description {
+            text-align: center;
+            padding: 50px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .car-description h1 {
+            font-size: 2.5rem;
+            color: #f8f9fa;
+            text-transform: uppercase;
+            font-weight: bold;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        .car-description p {
+            font-size: 1.2rem;
+            color: #ddd;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Key Features Section */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        .feature-item {
+            background: #343a40;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #f8f9fa;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Image Section Styles */
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 50px 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Additional Content Section */
+        .additional-content {
+            padding: 50px 20px;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .additional-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .additional-content p {
+            font-size: 1.1rem;
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-size: 1.25rem;
+        }
+
+        .car-location {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .footer {
+            background-color: #343a40;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            color: #f8f9fa;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+
+        /* Hover effect for car cards */
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-size: 1.25rem;
+        }
+
+        .car-location {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .offcanvas {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .offcanvas .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas .offcanvas-body {
+            padding-top: 20px;
+        }
+
+        .offcanvas .nav-link {
+            color: #f8f9fa;
+        }
+
+        .offcanvas .nav-link:hover {
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background: url('https://via.placeholder.com/1600x900') no-repeat center center;
+                background-size: cover;
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+        }
+
+        body {
+            padding-top: 70px;
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        .offcanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas-body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Car Dealer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters"
+                aria-controls="offcanvasFilters" style="color: wheat !important; background-color: white;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="car2.html">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
+                style="color: white !important; background-color: white;"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="car2.html" class="nav-link">Cars</a></li>
+                <li><a href="aboutus.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Car Description Section -->
+    <section class="car-description">
+        <h1>2019 Honda CR-V</h1>
+        <p>The 2019 Honda CR-V offers a smooth, responsive driving experience with a turbocharged engine and exceptional
+            fuel economy. A popular choice for families, it features a spacious cabin with modern technology and safety features. Whether for daily commutes or long road trips, the CR-V combines comfort and practicality.</p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="feature-list">
+        <div class="feature-item">
+            <h3>Turbocharged Engine</h3>
+            <p>Enjoy enhanced performance with a fuel-efficient 1.5L turbocharged engine.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Spacious Interior</h3>
+            <p>The CR-V provides ample room for passengers and cargo with high-quality materials and a modern design.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Advanced Safety Features</h3>
+            <p>With Honda Sensing suite, the CR-V comes equipped with adaptive cruise control, lane-keeping assist, and more.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Efficient Fuel Economy</h3>
+            <p>With up to 28 mpg city/34 mpg highway, the CR-V makes fuel savings a priority.</p>
+        </div>
+    </section>
+
+    <!-- Additional Content Section -->
+    <section class="additional-content">
+        <h2>Find Your Dream Honda CR-V</h2>
+        <p>Visit our dealership today to see the 2019 Honda CR-V in person. Our knowledgeable sales team will assist you
+            with all your questions and help you find the perfect model for your needs.</p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Car Dealer. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

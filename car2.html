@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealer - Buy and Sell Cars</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #f8f9fa;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+
+        .car-card {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card-body {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-size: 1.25rem;
+        }
+
+        .car-location {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .footer {
+            background-color: #343a40;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            color: #f8f9fa;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+        /* Hover effect for car cards */
+.car-card {
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #444;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for smooth scaling */
+}
+
+.car-card:hover {
+    transform: scale(1.05); /* Increase the size of the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance the shadow for emphasis */
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-card-body {
+    padding: 20px;
+}
+
+.car-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.car-price {
+    color: #007bff;
+    font-size: 1.25rem;
+}
+
+.car-location {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+/* Custom offcanvas dark background */
+.offcanvas {
+            background-color: #343a40; /* Dark background for offcanvas */
+            color: #f8f9fa; /* Light text for contrast */
+        }
+
+        .offcanvas .offcanvas-header {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .offcanvas .offcanvas-body {
+            padding-top: 20px;
+        }
+
+        .offcanvas .nav-link {
+            color: #f8f9fa;
+        }
+
+        .offcanvas .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* Make sure the body background is responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                background: url('https://via.placeholder.com/1600x900') no-repeat center center;
+                background-size: cover;
+            }
+        }
+/* Fix navbar at the top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050; /* Ensures the navbar stays on top of other elements */
+}
+
+/* Add padding to the top of the content to prevent it from being hidden behind the fixed navbar */
+body {
+    padding-top: 70px; /* Adjust this value to the height of your navbar */
+    background-color: #2c2c2c;
+    color: #f8f9fa;
+}
+
+/* Fix offcanvas at the top */
+.offcanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #343a40; /* Dark background for offcanvas */
+    color: #f8f9fa; /* Light text for contrast */
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.offcanvas-body {
+    padding-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark baller">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Car Dealer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters" aria-controls="offcanvasFilters" style="background-color: white;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start bomb" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" style="color: white !important; background-color: white;"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Cars</a></li>
+                <li><a href="aboutus.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <!-- Main Content - Car Listings -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Car 1: 2020 Toyota Corolla -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="2.jpg" alt="Toyota Corolla">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2020 Toyota Corolla</h5>
+                        <p class="car-location">Location: New York</p>
+                        <p class="car-price">$20,000</p><strike>$30,000</strike>
+                        <a href="2020 Toyota Corolla.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 2: 2019 Ford Mustang -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="3.jpg" alt="Ford Mustang">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2019 Ford Mustang</h5>
+                        <p class="car-location">Location: Los Angeles</p>
+                        <p class="car-price">$30,000</p><strike>$40,000</strike>
+                        <a href="2019 Ford Mustang.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 3: 2021 Tesla Model S -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="1.jpg" alt="Tesla Model S">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Tesla Model S</h5>
+                        <p class="car-location">Location: San Francisco</p>
+                        <p class="car-price">$85,000</p> <strike>$100,000</strike>
+                        <a href="2021 Tesla Model S.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 4: 2020 Honda Civic -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="4.jpg" alt="Honda Civic">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2020 Honda Civic</h5>
+                        <p class="car-location">Location: Miami</p>
+                        <p class="car-price">$22,500</p> <strike>$25,000</strike>
+                        <a href="2020 Honda Civic.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 5: 2021 BMW 3 Series -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="5.jpg" alt="BMW 3 Series">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 BMW 3 Series</h5>
+                        <p class="car-location">Location: Chicago</p>
+                        <p class="car-price">$40,000</p> <strike>$45,000</strike>
+                        <a href="2021 BMW 3 Series.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 6: 2022 Mercedes-Benz C-Class -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="6.jpg" alt="Mercedes-Benz C-Class">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Mercedes-Benz</h5>
+                        <p class="car-location">Location: Los Angeles</p>
+                        <p class="car-price">$50,000</p><strike>$60,000</strike>
+                        <a href="2022 Mercedes-Benz C-Class.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 7: 2023 Audi A4 -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="7.jpg" alt="Audi A4">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2023 Audi A4</h5>
+                        <p class="car-location">Location: Seattle</p>
+                        <p class="car-price">$42,000</p><strike>$45,000</strike>
+                        <a href="2023 Audi A4.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 8: 2021 Jeep Wrangler -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="8.jpg" alt="Jeep Wrangler">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Jeep Wrangler</h5>
+                        <p class="car-location">Location: Denver</p>
+                        <p class="car-price">$35,000</p> <strike>$55,000</strike>
+                        <a href="2021 Jeep Wrangler.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 9: 2022 Nissan Altima -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="9.jpg" alt="Nissan Altima">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Nissan Altima</h5>
+                        <p class="car-location">Location: Houston</p>
+                        <p class="car-price">$24,000</p><strike>$30,000</strike>
+                        <a href="2022 Nissan Altima.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 10: 2021 Chevrolet Silverado -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="10.jpg" alt="Chevrolet Silverado">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Chevrolet Silverado</h5>
+                        <p class="car-location">Location: Dallas</p>
+                        <p class="car-price">$45,000</p><strike>$55,000</strike>
+                        <a href="2021 Chevrolet Silverado.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 11: 2022 Ford F-150 -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="11.jpg" alt="Ford F-150">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Ford F-150</h5>
+                        <p class="car-location">Location: Phoenix</p>
+                        <p class="car-price">$38,000</p><strike>$50,000</strike>
+                        <a href="2022 Ford F-150.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 12: 2023 Honda CR-V -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="12.jpg" alt="Honda CR-V">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2023 Honda CR-V</h5>
+                        <p class="car-location">Location: Atlanta</p>
+                        <p class="car-price">$32,000</p><strike>$45,000</strike>
+                        <a href="2023 Honda CR-V.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Car 1: 2020 Lexus RX -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="13.jpg" alt="Lexus RX">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2020 Lexus RX</h5>
+                        <p class="car-location">Location: New York</p>
+                        <p class="car-price">$50,000</p><strike>$80,000</strike>
+                        <a href="2020 Lexus RX.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 2: 2019 Chevrolet Camaro -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="14.jpg" alt="Chevrolet Camaro">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2019 Chevrolet Camaro</h5>
+                        <p class="car-location">Location: Los Angeles</p>
+                        <p class="car-price">$30,000</p><strike>$50,000</strike>
+                        <a href="2019 Chevrolet Camaro.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 3: 2021 Audi Q7 -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="15.jpg" alt="Audi Q7">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Audi Q7</h5>
+                        <p class="car-location">Location: San Francisco</p>
+                        <p class="car-price">$85,000</p><strike>$100,000</strike>
+                        <a href="2021 Audi Q7.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Car 5: 2021 Jaguar XE -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="17.jpg" alt="Jaguar XE">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Jaguar XE</h5>
+                        <p class="car-location">Location: Chicago</p>
+                        <p class="car-price">$40,000</p><strike>$60,000</strike>
+                        <a href="2021 Jaguar XE.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 6: 2022 Porsche 911 -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="18.jpg" alt="Porsche 911">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Porsche 911</h5>
+                        <p class="car-location">Location: Los Angeles</p>
+                        <p class="car-price">$75,000</p><strike>$85,000</strike>
+                        <a href="2022 Porsche 911.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 7: 2023 Mercedes-Benz S-Class -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="19.jpg" alt="Mercedes-Benz S-Class">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2023 Mercedes-Benz</h5>
+                        <p class="car-location">Location: Seattle</p>
+                        <p class="car-price">$120,000</p><strike>$150,000</strike>
+                        <a href="2023 Mercedes-Benz S-Class.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 8: 2021 Subaru Outback -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="20.jpg" alt="Subaru Outback">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Subaru Outback</h5>
+                        <p class="car-location">Location: Denver</p>
+                        <p class="car-price">$32,000</p><strike>$50,000</strike>
+                        <a href="2021 Subaru Outback.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 9: 2022 Toyota Highlander -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="21.jpg" alt="Toyota Highlander">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Toyota Highlander</h5>
+                        <p class="car-location">Location: Houston</p>
+                        <p class="car-price">$28,000</p><strike>$50,000</strike>
+                        <a href="2022 Toyota Highlander.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Car 10: 2021 Nissan Rogue -->
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="22.jpg" alt="Nissan Rogue">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2021 Nissan Rogue</h5>
+                        <p class="car-location">Location: Dallas</p>
+                        <p class="car-price">$27,000</p><strike>$40,000</strike>
+                        <a href="2021 Nissan Rogue.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="23.jpg" alt="Rolls-Royce Cullinan">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Rolls-Royce Cullinan</h5>
+                        <p class="car-location">Location: New York</p>
+                        <p class="car-price">$350,000</p><strike>$400,000</strike>
+                        <a href="Rolls-Royce Cullinan.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="24.jpg" alt="Lamborghini Aventador">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Lamborghini </h5>
+                        <p class="car-location">Location: Beverly Hills</p>
+                        <p class="car-price">$400,000</p><strike>$450,000</strike>
+                        <a href="Lamborghini Aventador.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="25.jpg" alt="Ferrari 488 GTB">
+                    <div class="car-card-body">
+                        <h5 class="car-title">2022 Ferrari 488 GTB</h5>
+                        <p class="car-location">Location: Miami</p>
+                        <p class="car-price">$280,000</p><strike>$320,000</strike>
+                        <a href="Ferrari 488 GTB.html" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Car Dealer, Inc. | All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+    </div>
+
+    <script src="dist/js/bootstrap.bundle.min.js"></script>
+    <script src="temi.js"></script>
+</body>
+</html>
